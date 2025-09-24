@@ -1,21 +1,17 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
-import LinearGradient from 'react-native-linear-gradient'
 
 const Card = ({ item }) => {
     return (
         <View style={styles.cardContainer}>
-            {/* Image Section */}
             <View style={styles.imageContainer}>
                 <Image source={item.imagelink_square} style={styles.image} />
-                {/* Rating Badge */}
                 <View style={styles.ratingBadge}>
                     <Text style={styles.star}>★</Text>
                     <Text style={styles.ratingText}>{item.ratings_count}</Text>
                 </View>
             </View>
 
-            {/* Details Section */}
             <View style={styles.details}>
                 <Text style={styles.title}>{item.name}</Text>
                 <Text style={styles.subtitle}>{item.special_ingredient}</Text>
@@ -34,7 +30,7 @@ const styles = StyleSheet.create({
         width: 180,
         borderRadius: 15,
         margin: 10,
-        backgroundColor: '#1E1E1E', // dark card background
+        backgroundColor: '#1E1E1E',
         overflow: 'hidden',
     },
     imageContainer: {
@@ -98,4 +94,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Card
+export default Card;
