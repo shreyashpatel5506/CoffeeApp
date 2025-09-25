@@ -6,7 +6,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { enableScreens } from 'react-native-screens';
 
-import DrawerNavigation from './src/navigation/DrawerNavigation.js';
+import RootStack from './src/navigation/RootStack';
 
 // Enable react-native-screens (improves performance too)
 enableScreens();
@@ -14,7 +14,7 @@ enableScreens();
 const App = () => {
   return (
     <NavigationContainer>
-      <DrawerNavigation />
+      <RootStack />
     </NavigationContainer>
   );
 };

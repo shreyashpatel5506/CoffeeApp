@@ -5,7 +5,7 @@ import CoffeBg from './../assests/background.png';
 import logo from './../assests/mainPageCoffee.png';
 
 import myStore from '../store/store'
-const Home = () => {
+const Home = ({ navigation }) => {
     const { CoffeeList, BeansList } = myStore();
     console.log(CoffeeList, BeansList);
 
@@ -31,7 +31,10 @@ const Home = () => {
                 >
                     The best grain, the finest roast, the most powerful flavor.
                 </Text>
-                <Pressable style={styles.button}>
+                <Pressable
+                    style={styles.button}
+                    onPress={() => navigation.navigate("FirstPage")}
+                >
                     <Text style={styles.buttonText}>Get Started</Text>
                 </Pressable>
             </ImageBackground>
