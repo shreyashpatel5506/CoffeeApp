@@ -1,24 +1,42 @@
 import React from "react";
+import { View, Text } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 
-// Navigators
-import DrawerNavigation from "../navigation/DrawerNavigation.js"
+
 
 // Screens
-import firstPage from "../screens/firstPage";
+import FirstPage from "../screens/firstPage";
 import ProductDetail from "../screens/ProductDetail";
+import menu from "../navigation/Menu.js"
 
 const Stack = createStackNavigator();
 
 const RootStack = () => {
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-            {/* Drawer wraps Tabs */}
-            <Stack.Screen name="DrawerNav" component={DrawerNavigation} />
-
-            {/* Extra pages pushed over Drawer/Tabs */}
-            <Stack.Screen name="FirstPage" component={firstPage} />
-            <Stack.Screen name="ProductDetail" component={ProductDetail} />
+        <Stack.Navigator>
+            <Stack.Screen name="menu" component={menu} options={{ headerShown: false }} />
+            <Stack.Screen
+                name="FirstPage"
+                component={FirstPage}
+                options={{
+                    header: () => (
+                        <View style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            paddingHorizontal: 15,
+                            paddingVertical: 10,
+                            backgroundColor: "#fff",
+                            elevation: 4,
+                        }}>
+                            <Text style={{ fontSize: 20, fontWeight: "700" }}>FirstPage</Text>
+                        </View>
+                    ),
+                    // Hide bottom tab bar when on FirstPage
+                    presentation: 'card',
+                }}
+            />
+            <Stack.Screen name="ProductDetail" component={ProductDetail} options={{ headerShown: false }} />
         </Stack.Navigator>
     );
 };

@@ -1,17 +1,18 @@
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import Icon from "react-native-vector-icons/Ionicons";
 
+
 import Home from "../screens/Home.jsx"
 import cart from "../screens/cart.jsx"
 import favourite from '../screens/favourite.jsx'
-import profile from "../screens/favourite.jsx"
+import FirstPage from '../screens/firstPage.jsx'
 
 const Tab = createBottomTabNavigator();
 
-const customHeader = ({ navigation, title }) => {
-    return (<View
+const CustomHeader = ({ navigation, route }) => (
+    <View
         style={{
             flexDirection: "row",
             alignItems: "center",
@@ -22,10 +23,8 @@ const customHeader = ({ navigation, title }) => {
             elevation: 4,
         }}
     >
-        <Text style={{ fontSize: 20, fontWeight: "700" }}>{title}</Text>
-
+        <Text style={{ fontSize: 20, fontWeight: "700" }}>{route.name}</Text>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-            {/* Notifications */}
             <TouchableOpacity onPress={() => alert("Notifications")}>
                 <Icon
                     name="notifications-outline"
@@ -33,8 +32,6 @@ const customHeader = ({ navigation, title }) => {
                     style={{ marginRight: 15 }}
                 />
             </TouchableOpacity>
-
-            {/* Profile Pic */}
             <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
                 <Image
                     source={{ uri: "https://i.pravatar.cc/50" }}
@@ -43,20 +40,19 @@ const customHeader = ({ navigation, title }) => {
             </TouchableOpacity>
         </View>
     </View>
-    );
-};
+);
 
 const Menu = () => {
     return (
         <Tab.Navigator
             screenOptions={({ route, navigation }) => ({
-                header: () => { <customHeader navigation={navigation} title={route.name} /> },
+                header: (props) => <CustomHeader {...props} />,
                 tabBarIcon: ({ color, size }) => {
                     let iconName;
                     if (route.name === "Home") iconName = "home-outline";
                     else if (route.name === "Cart") iconName = "cart-outline";
                     else if (route.name === "Favourite") iconName = "heart-outline";
-                    else if (route.name === "Profile") iconName = "person-outline";
+                    else if (route.name === "FirstPage") iconName = "cafe-outline";
                     return <Icon name={iconName} size={size} color={color} />;
                 },
                 tabBarActiveTintColor: "#FF8C32",
@@ -64,9 +60,9 @@ const Menu = () => {
             })}
         >
             <Tab.Screen name="Home" component={Home} />
+
             <Tab.Screen name="Cart" component={cart} />
             <Tab.Screen name="Favourite" component={favourite} />
-            <Tab.Screen name="Profile" component={profile} />
         </Tab.Navigator>
     );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import { ImageBackground, Text, View, StyleSheet, Image, Pressable } from 'react-native';
+import { ImageBackground, Text, StyleSheet, Image, Pressable } from 'react-native';
 import CoffeBg from './../assests/background.png';
 import logo from './../assests/mainPageCoffee.png';
 
