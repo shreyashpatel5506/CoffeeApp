@@ -3,15 +3,14 @@ import React from 'react'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import Icon from "react-native-vector-icons/Ionicons";
 
-
 import Home from "../screens/Home.jsx"
-import cart from "../screens/cart.jsx"
-import favourite from '../screens/favourite.jsx'
+import Cart from "../screens/cart.jsx"
+import Favourite from '../screens/favourite.jsx'
 import FirstPage from '../screens/firstPage.jsx'
 
 const Tab = createBottomTabNavigator();
 
-const CustomHeader = ({ navigation, route }) => (
+const CustomHeader = ({ route }) => (
     <View
         style={{
             flexDirection: "row",
@@ -23,7 +22,9 @@ const CustomHeader = ({ navigation, route }) => (
             elevation: 4,
         }}
     >
-        <Text style={{ fontSize: 20, fontWeight: "700" }}>{route.name}</Text>
+        <Text style={{ fontSize: 20, fontWeight: "700" }}>
+            {route.name === "FirstPage" ? "Find the best coffee for you" : route.name}
+        </Text>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
             <TouchableOpacity onPress={() => alert("Notifications")}>
                 <Icon
@@ -32,7 +33,7 @@ const CustomHeader = ({ navigation, route }) => (
                     style={{ marginRight: 15 }}
                 />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+            <TouchableOpacity onPress={() => alert("Profile")}>
                 <Image
                     source={{ uri: "https://i.pravatar.cc/50" }}
                     style={{ width: 35, height: 35, borderRadius: 20 }}
@@ -45,14 +46,13 @@ const CustomHeader = ({ navigation, route }) => (
 const Menu = () => {
     return (
         <Tab.Navigator
-            screenOptions={({ route, navigation }) => ({
+            screenOptions={({ route }) => ({
                 header: (props) => <CustomHeader {...props} />,
                 tabBarIcon: ({ color, size }) => {
                     let iconName;
                     if (route.name === "Home") iconName = "home-outline";
                     else if (route.name === "Cart") iconName = "cart-outline";
                     else if (route.name === "Favourite") iconName = "heart-outline";
-                    else if (route.name === "FirstPage") iconName = "cafe-outline";
                     return <Icon name={iconName} size={size} color={color} />;
                 },
                 tabBarActiveTintColor: "#FF8C32",
@@ -60,11 +60,19 @@ const Menu = () => {
             })}
         >
             <Tab.Screen name="Home" component={Home} />
+            <Tab.Screen name="Cart" component={Cart} />
+            <Tab.Screen name="Favourite" component={Favourite} />
 
-            <Tab.Screen name="Cart" component={cart} />
-            <Tab.Screen name="Favourite" component={favourite} />
+            {/* Hidden tab for FirstPage */}
+            <Tab.Screen
+                name="FirstPage"
+                component={FirstPage}
+                options={{
+                    tabBarButton: () => null,
+                }}
+            />
         </Tab.Navigator>
     );
 }
 
-export default Menu
+export default Menu;
