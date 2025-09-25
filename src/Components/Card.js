@@ -8,14 +8,14 @@ const Card = ({ item }) => {
                 <Image source={item.imagelink_square} style={styles.image} />
                 <View style={styles.ratingBadge}>
                     <Text style={styles.star}>★</Text>
-                    <Text style={styles.ratingText}>{item.ratings_count}</Text>
+                    <Text style={styles.ratingText}>{item.average_rating}</Text>
                 </View>
             </View>
 
             <View style={styles.details}>
                 <Text style={styles.title}>{item.name}</Text>
                 <Text style={styles.subtitle}>{item.special_ingredient}</Text>
-
+                m/
                 <View style={styles.footer}>
                     <Text style={styles.price}>${item.prices[0].price}</Text>
 
