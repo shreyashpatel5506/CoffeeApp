@@ -11,36 +11,43 @@ import FirstPage from '../screens/firstPage.jsx'
 const Tab = createBottomTabNavigator();
 
 const CustomHeader = ({ route }) => (
-    <View
-        style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            paddingHorizontal: 15,
-            paddingVertical: 10,
-            backgroundColor: "#fff",
-            elevation: 4,
-        }}
-    >
-        <Text style={{ fontSize: 20, fontWeight: "700" }}>
-            {route.name === "FirstPage" ? "Find the best coffee for you" : route.name}
-        </Text>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <TouchableOpacity onPress={() => alert("Notifications")}>
-                <Icon
-                    name="notifications-outline"
-                    size={24}
-                    style={{ marginRight: 15 }}
-                />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => alert("Profile")}>
-                <Image
-                    source={{ uri: "https://i.pravatar.cc/50" }}
-                    style={{ width: 35, height: 35, borderRadius: 20 }}
-                />
-            </TouchableOpacity>
-        </View>
+    // <View style={{ flexDirection: "row", alignItems: 'flex-end', justifyContent: "space-between" }}>
+    //     <View style={{ flexDirection: "row", alignItems: "center" }}>
+    //         <TouchableOpacity onPress={() => alert("Notifications")}>
+    //             <Icon
+    //                 name="notifications-outline"
+    //                 size={24}
+    //                 style={{ marginRight: 15 }}
+    //             />
+    //         </TouchableOpacity>
+    //         <TouchableOpacity onPress={() => alert("Profile")}>
+    //             <Image
+    //                 source={{ uri: "https://i.pravatar.cc/50" }}
+    //                 style={{ width: 35, height: 35, borderRadius: 20 }}
+    //             />
+    //         </TouchableOpacity>
+    //     </View>
+    // </View>
+    <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
+
+        {/* Profile (Left Side) */}
+        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+            <Image
+                source={{ uri: "https://i.pravatar.cc/50" }}
+                style={{ width: 35, height: 35, borderRadius: 20 }}
+            />
+        </TouchableOpacity>
+
+        {/* Notifications (Right Side) */}
+        <TouchableOpacity onPress={() => navigation.navigate("Notifications")}>
+            <Icon
+                name="notifications-outline"
+                size={26}
+            />
+        </TouchableOpacity>
+
     </View>
+
 );
 
 const Menu = () => {
