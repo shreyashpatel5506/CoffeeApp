@@ -17,6 +17,7 @@ const ProductDetail = ({ route }) => {
     return (
         <ScrollView style={styles.container}>
             {/* Product Image with Favourite */}
+
             <View>
                 <Image source={item.imagelink_portrait} style={styles.image} />
                 <TouchableOpacity
@@ -93,6 +94,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#121212",
         padding: 15,
+        paddingBottom: 20,
     },
     image: {
         width: "100%",
@@ -108,20 +110,23 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
     infoBox: {
-        marginTop: 15,
+        marginTop: -99,
+        backgroundColor: "rgba(255,255,255,0.3)",
+        color: 'black',
+
     },
     name: {
-        color: "#fff",
+        color: "#000000",
         fontSize: 22,
         fontWeight: "bold",
     },
     subText: {
-        color: "#aaa",
+        color: "#3d3d3dff",
         fontSize: 14,
         marginTop: 2,
     },
     roast: {
-        color: "#ccc",
+        color: "#5e5e5eff",
         marginTop: 2,
         fontSize: 13,
     },
@@ -172,6 +177,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
+        marginBottom: 25,
+        paddingBottom: 10,
     },
     price: {
         fontSize: 18,
