@@ -1,11 +1,16 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
-
+import { useNavigation } from '@react-navigation/native'
 const Card = ({ item }) => {
+    const navigation = useNavigation();
     return (
-        <View style={styles.cardContainer}>
+        <TouchableOpacity
+            style={styles.cardContainer}
+            onPress={() => navigation.navigate("ProductDetail", { item })}
+        >
+
             <View style={styles.imageContainer}>
-                <Image source={item.imagelink_square} style={styles.image} />
+                <Image source={item.imagelink_portrait} style={styles.image} />
                 <View style={styles.ratingBadge}>
                     <Text style={styles.star}>★</Text>
                     <Text style={styles.ratingText}>{item.average_rating}</Text>
@@ -21,7 +26,7 @@ const Card = ({ item }) => {
 
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
