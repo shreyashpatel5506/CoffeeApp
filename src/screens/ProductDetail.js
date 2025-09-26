@@ -7,7 +7,7 @@ import {
     StyleSheet,
     ScrollView,
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons"; // for star & heart icons
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const ProductDetail = ({ route }) => {
     const { item } = route.params;
@@ -29,6 +29,7 @@ const ProductDetail = ({ route }) => {
                         size={28}
                         color={favourite ? "red" : "#fff"}
                     />
+                    <AntDesign name={favourite ? "hearto" : "heart"} color={favourite ? "red" : "#fff"} size={24} />
                 </TouchableOpacity>
             </View>
 
@@ -40,7 +41,7 @@ const ProductDetail = ({ route }) => {
 
                 {/* Ratings + Type */}
                 <View style={styles.row}>
-                    <Icon name="star" size={18} color="#f5a623" />
+                    <AntDesign name="star" color="#f5a623" size={18} />
                     <Text style={styles.rating}>
                         {item.average_rating} ({item.ratings_count})
                     </Text>

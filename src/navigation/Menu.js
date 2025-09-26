@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import Icon from "react-native-vector-icons/Ionicons";
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import Home from "../screens/Home.jsx"
 import Cart from "../screens/cart.jsx"
@@ -57,10 +57,10 @@ const Menu = () => {
                 header: (props) => <CustomHeader {...props} />,
                 tabBarIcon: ({ color, size }) => {
                     let iconName;
-                    if (route.name === "Home") iconName = "home-outline";
-                    else if (route.name === "Cart") iconName = "cart-outline";
-                    else if (route.name === "Favourite") iconName = "heart-outline";
-                    return <Icon name={iconName} size={size} color={color} />;
+                    if (route.name === "Home") iconName = "home";
+                    else if (route.name === "Cart") iconName = "shoppingcart";
+                    else if (route.name === "Favourite") iconName = "heart";
+                    return <AntDesign name="iconName" color="#000" size={24} />;
                 },
                 tabBarActiveTintColor: "#FF8C32",
                 tabBarInactiveTintColor: "gray",
