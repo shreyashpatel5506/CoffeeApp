@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TouchableOpacity, ScrollView, TextInput } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, ScrollView, TextInput, StyleSheet } from 'react-native'
 import React, { useState, useMemo } from 'react'
 import myStore from '../store/store'
 import Card from "../Components/Card.js"
@@ -7,9 +7,10 @@ import { HomeStyles } from '../style.js'
 export default function Home() {
     const { CoffeeList, BeansList } = myStore();
     const [searchQuery, setSearchQuery] = useState("");
-    // ✅ Categories (from CoffeeList)
+
+    // ✅ Categories
     const CategoryList = useMemo(() => {
-        const allcategories = CoffeeList.map((item) => item.name); // use category instead of name
+        const allcategories = CoffeeList.map((item) => item.name);
         const uniqueCategories = ["All", ...new Set(allcategories)];
         return uniqueCategories;
     }, [CoffeeList]);
@@ -23,17 +24,19 @@ export default function Home() {
             : CoffeeList.filter(item => item.name === selectedCategoryCoffee);
 
     return (
-        <ScrollView style={HomeStyles.container}>
+        <ScrollView style={HomeStyles.container} showsVerticalScrollIndicator={false}>
+
             {/* 🔸 Header */}
-            <View style={HomeStyles.box}>
-                <Text style={HomeStyles.firstText}>Find the best{"\n"}coffee for you</Text>
-            </View>
+            <Text style={HomeStyles.firstText}>
+                Find the best{"\n"}coffee for you
+            </Text>
 
             {/* 🔸 Search Bar */}
             <View style={HomeStyles.searchContainer}>
                 <TextInput
                     style={HomeStyles.searchInput}
-                    placeholder="Search coffee..."
+                    placeholder="Find your coffee..."
+                    placeholderTextColor="#555"
                     value={searchQuery}
                     onChangeText={setSearchQuery}
                 />
@@ -45,7 +48,7 @@ export default function Home() {
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 keyExtractor={(item, index) => index.toString()}
-                contentContainerStyle={{ marginVertical: 10 }}
+                contentContainerStyle={{ marginVertical: 20 }}
                 renderItem={({ item }) => (
                     <TouchableOpacity
                         onPress={() => setSelectedCategoryCoffee(item)}

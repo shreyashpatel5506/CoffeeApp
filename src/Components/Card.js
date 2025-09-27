@@ -1,102 +1,46 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
+import { CardStyle } from "../style.js"
+import LinearGradient from 'react-native-linear-gradient'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+
 const Card = ({ item }) => {
     const navigation = useNavigation();
     return (
         <TouchableOpacity
-            style={styles.cardContainer}
+            style={CardStyle.cardContainer}
             onPress={() => navigation.navigate("ProductDetail", { item })}
         >
+            <LinearGradient
+                colors={['#242a35ff', '#313b4bff']}
+                start={{ x: 0.2, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={{ flex: 1 }}
+            >
 
-            <View style={styles.imageContainer}>
-                <Image source={item.imagelink_portrait} style={styles.image} />
-                <View style={styles.ratingBadge}>
-                    <Text style={styles.star}>★</Text>
-                    <Text style={styles.ratingText}>{item.average_rating}</Text>
+                <View style={CardStyle.imageContainer}>
+                    <Image source={item.imagelink_portrait} style={CardStyle.image} />
+                    <View style={CardStyle.ratingBadge}>
+                        <Text style={CardStyle.star}>★</Text>
+                        <Text style={CardStyle.ratingText}>{item.average_rating}</Text>
+                    </View>
                 </View>
-            </View>
 
-            <View style={styles.details}>
-                <Text style={styles.title}>{item.name}</Text>
-                <Text style={styles.subtitle}>{item.special_ingredient}</Text>
-                m/
-                <View style={styles.footer}>
-                    <Text style={styles.price}>${item.prices[0].price}</Text>
-
+                <View style={CardStyle.details}>
+                    <Text style={CardStyle.title}>{item.name}</Text>
+                    <Text style={CardStyle.subtitle}>{item.special_ingredient}</Text>
+                    m/
+                    <View style={CardStyle.footer}>
+                        <Text style={CardStyle.price}><Text style={CardStyle.sign}>$ </Text>{item.prices[0].price}</Text>
+                        <Ionicons name="add-circle" size={24} color="#FF8C32" />
+                    </View>
                 </View>
-            </View>
-        </TouchableOpacity>
+            </LinearGradient>
+        </TouchableOpacity >
     )
 }
 
-const styles = StyleSheet.create({
-    cardContainer: {
-        width: 180,
-        borderRadius: 15,
-        margin: 10,
-        backgroundColor: '#1E1E1E',
-        overflow: 'hidden',
-    },
-    imageContainer: {
-        position: 'relative',
-        padding: 5,
-    },
-    image: {
-        width: '100%',
-        height: 120,
-        borderTopLeftRadius: 15,
-        borderTopRightRadius: 15,
-    },
-    ratingBadge: {
-        position: 'absolute',
-        top: 8,
-        right: 8,
-        backgroundColor: '#FF8C32',
-        borderRadius: 12,
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 6,
-        paddingVertical: 2,
-    },
-    star: {
-        color: '#fff',
-        fontSize: 12,
-        marginRight: 2,
-    },
-    ratingText: {
-        color: '#fff',
-        fontSize: 12,
-    },
-    details: {
-        padding: 10,
-    },
-    title: {
-        fontSize: 16,
-        fontWeight: '600',
-        color: '#fff',
-    },
-    subtitle: {
-        fontSize: 12,
-        color: '#aaa',
-        marginVertical: 4,
-    },
-    footer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginTop: 8,
-    },
-    price: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#fff',
-    },
-    addButton: {
-        backgroundColor: '#FF8C32',
-        borderRadius: 8,
-        padding: 6,
-    },
-})
+
 
 export default Card;

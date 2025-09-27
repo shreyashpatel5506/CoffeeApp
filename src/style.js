@@ -193,31 +193,43 @@ export const ProductStyles = StyleSheet.create({
 export const HomeStyles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: 15,
-        backgroundColor: "#fff", // you can change to "#000" if you want dark theme
-    },
-    box: {
-        marginTop: 20,
-        marginBottom: 10,
+
+        backgroundColor: "#101724ff", // dark theme
     },
     firstText: {
         fontSize: 28,
         fontWeight: "700",
+        color: 'white',
+        marginTop: 60,
+        left: 25,
+    },
+    searchContainer: {
+        marginTop: 20,
+        marginLeft: 20,
+        marginRight: 20,
+    },
+    searchInput: {
+        height: 50,
+        borderRadius: 15,
+        paddingHorizontal: 20,
+        backgroundColor: "#1E1F28",
+        fontSize: 16,
+        color: '#fff',
     },
     categoryButton: {
         paddingVertical: 8,
-        paddingHorizontal: 15,
+        paddingHorizontal: 18,
         borderRadius: 20,
-        borderWidth: 1,
-        borderColor: "#ccc",
+        backgroundColor: "#1E1F28",
         marginRight: 10,
+        marginLeft: 10
     },
     activeCategory: {
-        backgroundColor: "#007BFF",
+        backgroundColor: "#D17842", // orange highlight
     },
     categoryText: {
-        color: "#333",
-        fontWeight: "600",
+        color: "#ccc",
+        fontWeight: '800',
     },
     activeText: {
         color: "#fff",
@@ -225,20 +237,92 @@ export const HomeStyles = StyleSheet.create({
     sectionTitle: {
         fontSize: 20,
         fontWeight: "700",
+        color: "white",
         marginVertical: 15,
+        marginLeft: 15,
     },
-    searchContainer: {
-        marginVertical: 10,
-    },
-    searchInput: {
-        height: 40,
-        borderColor: '#ccc',
-        borderWidth: 1,
-        borderRadius: 20,
-        paddingHorizontal: 15,
-        backgroundColor: '#f9f9f9',
-        fontSize: 16,
-        color: '#333',
-    },
-
 });
+
+export const CardStyle = StyleSheet.create({
+    cardContainer: {
+        width: 180,
+        height: 270,
+        borderRadius: 15,
+        margin: 10,
+        backgroundColor: '#1E1E1E',
+        overflow: 'hidden',
+
+    },
+    imageContainer: {
+        position: 'relative',
+        padding: 15,
+        overflow: 'hidden',
+    },
+    image: {
+        width: 150,
+        height: 150,
+        objectFit: 'cover',
+
+        borderRadius: 15,
+        overflow: 'hidden',
+    },
+    ratingBadge: {
+        position: 'absolute',
+        top: 15,
+        right: 15,
+        backgroundColor: '#00000094',
+        borderBottomLeftRadius: 15,
+        borderTopRightRadius: 15,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 6,
+        paddingVertical: 4,
+        overflow: 'hidden'
+    },
+    star: {
+        color: '#D17842',
+        fontSize: 12,
+        marginRight: 2,
+    },
+    ratingText: {
+        color: '#fff',
+        fontSize: 12,
+        fontFamily: 'Poppins',
+        fontWeight: '600',
+        fontStyle: 'bold'
+    },
+    details: {
+        padding: 10,
+        paddingTop: 0,
+    },
+    title: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#fff',
+    },
+    subtitle: {
+        fontSize: 12,
+        color: '#aaa',
+        marginVertical: 4,
+    },
+    footer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 8,
+    },
+    price: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#fff',
+    },
+    addButton: {
+        backgroundColor: '#FF8C32',
+        borderRadius: 8,
+        padding: 6,
+    },
+    sign: {
+        color: '#FF8C32',
+        marginRight: 3
+    }
+})

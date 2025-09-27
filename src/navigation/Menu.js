@@ -16,8 +16,10 @@ const CustomHeader = ({ navigation }) => (
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+        paddingTop: 40,
         width: "100%",
-        paddingHorizontal: 15
+        paddingHorizontal: 15,
+        backgroundColor: '#101724ff'
     }}>
         <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
             <Image
@@ -27,7 +29,7 @@ const CustomHeader = ({ navigation }) => (
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => navigation.navigate("Notifications")}>
-            <Ionicons name="notifications-outline" size={26} color="#000" />
+            <Ionicons name="notifications-outline" size={26} color="#fff" />
         </TouchableOpacity>
     </View>
 );
@@ -47,7 +49,7 @@ const Menu = () => (
             },
             tabBarActiveTintColor: "#FF8C32",
             tabBarInactiveTintColor: "gray",
-            tabBarStyle: { justifyContent: "space-evenly" },
+            tabBarStyle: { justifyContent: "space-evenly", backgroundColor: '#101724ff' },
         })}
     >
         <Tab.Screen name="Home" component={Home} />

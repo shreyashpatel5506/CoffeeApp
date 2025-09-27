@@ -18,7 +18,12 @@ import { WelcomeStyle } from "../style.js";
 
 const Welcome = ({ navigation }) => {
     return (
-        <LinearGradient colors={['#D7A870', '#B08149']} style={WelcomeStyle.gradient}>
+        <LinearGradient colors={['#0C0F14', '#2d3441ff']}
+            start={{ x: 0.2, y: 0 }}
+            end={{ x: 1, y: 1 }}
+
+            style={WelcomeStyle.gradient}
+        >
             <SafeAreaView style={WelcomeStyle.safeArea}>
                 <ImageBackground source={CoffeBg} style={WelcomeStyle.bg}>
                     <Image
