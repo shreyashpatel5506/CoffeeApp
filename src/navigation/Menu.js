@@ -1,7 +1,7 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native'
+import { View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Home from "../screens/Home.jsx"
 import Cart from "../screens/cart.jsx"
@@ -10,25 +10,14 @@ import FirstPage from '../screens/firstPage.jsx'
 
 const Tab = createBottomTabNavigator();
 
-const CustomHeader = ({ route }) => (
-    // <View style={{ flexDirection: "row", alignItems: 'flex-end', justifyContent: "space-between" }}>
-    //     <View style={{ flexDirection: "row", alignItems: "center" }}>
-    //         <TouchableOpacity onPress={() => alert("Notifications")}>
-    //             <Icon
-    //                 name="notifications-outline"
-    //                 size={24}
-    //                 style={{ marginRight: 15 }}
-    //             />
-    //         </TouchableOpacity>
-    //         <TouchableOpacity onPress={() => alert("Profile")}>
-    //             <Image
-    //                 source={{ uri: "https://i.pravatar.cc/50" }}
-    //                 style={{ width: 35, height: 35, borderRadius: 20 }}
-    //             />
-    //         </TouchableOpacity>
-    //     </View>
-    // </View>
-    <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
+const CustomHeader = ({ navigation }) => (
+    <View style={{
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        width: "100%",
+        paddingHorizontal: 15
+    }}>
 
         {/* Profile (Left Side) */}
         <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
@@ -40,14 +29,9 @@ const CustomHeader = ({ route }) => (
 
         {/* Notifications (Right Side) */}
         <TouchableOpacity onPress={() => navigation.navigate("Notifications")}>
-            <Icon
-                name="notifications-outline"
-                size={26}
-            />
+            <Ionicons name="notifications-outline" size={26} color="#000" />
         </TouchableOpacity>
-
     </View>
-
 );
 
 const Menu = () => {
@@ -55,12 +39,17 @@ const Menu = () => {
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 header: (props) => <CustomHeader {...props} />,
-                tabBarIcon: ({ color, size }) => {
+                tabBarIcon: ({ color, size, focused }) => {
                     let iconName;
-                    if (route.name === "Home") iconName = "home";
-                    else if (route.name === "Cart") iconName = "shoppingcart";
-                    else if (route.name === "Favourite") iconName = "heart";
-                    return <AntDesign name="iconName" color="#000" size={24} />;
+
+                    if (route.name === "Home")
+                        iconName = focused ? "home" : "home-outline";
+                    else if (route.name === "Cart")
+                        iconName = focused ? "cart" : "cart-outline";
+                    else if (route.name === "Favourite")
+                        iconName = focused ? "heart" : "heart-outline";
+
+                    return <Ionicons name={iconName} size={size} color={color} />;
                 },
                 tabBarActiveTintColor: "#FF8C32",
                 tabBarInactiveTintColor: "gray",
