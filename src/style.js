@@ -271,7 +271,7 @@ export const CardStyle = StyleSheet.create({
         top: 15,
         right: 15,
         backgroundColor: '#00000094',
-        borderBottomLeftRadius: 15,
+        borderBottomLeftRadius: 20,
         borderTopRightRadius: 15,
         flexDirection: 'row',
         alignItems: 'center',
