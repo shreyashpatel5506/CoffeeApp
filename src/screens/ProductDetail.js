@@ -20,7 +20,7 @@ const ProductDetail = ({ route }) => {
     const isFavourite = FavouriteList.some(fav => fav.id === item.id);
 
     return (
-        <ScrollView style={ProductStyles.container} showsVerticalScrollIndicator={false}>
+        <ScrollView style={ProductStyles.container} showsVerticalScrollIndicator={true}>
             {/* Product Image with Favourite */}
             <View style={ProductStyles.imageWrapper}>
                 <Image source={item.imagelink_portrait} style={ProductStyles.image} />
@@ -43,7 +43,7 @@ const ProductDetail = ({ route }) => {
             </View>
 
             {/* Top Info Section */}
-            <View style={ProductStyles.card}>
+            <View style={[ProductStyles.card, ProductStyles.dime]} >
                 <Text style={ProductStyles.name}>{item.name}</Text>
                 <Text style={ProductStyles.subText}>{item.special_ingredient}</Text>
                 <Text style={ProductStyles.roast}>{item.roasted}</Text>
