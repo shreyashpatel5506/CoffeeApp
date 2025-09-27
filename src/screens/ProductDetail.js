@@ -16,7 +16,7 @@ const ProductDetail = ({ route }) => {
     const [selectedSize, setSelectedSize] = useState(item.prices[0]);
 
     // Get actions and state from store
-    const { FavouriteList, addToFavourite, removeFromFavourite, addToCart } = myStore();
+    const { FavouriteList, addToFavourite, removeFromFavourite, addToCart, cartList } = myStore();
     const isFavourite = FavouriteList.some(fav => fav.id === item.id);
 
     return (

@@ -14,7 +14,7 @@ const myStore = create((set, get) => ({
     OrderHistory: [],
 
     // ---------- ACTIONS ----------
-    addToCart: (item, size = "S") => {
+    addToCart: (item, size) => {
         const { cartList, cartPrice } = get();
         const priceObj = item.prices.find(p => p.size === size) || item.prices[0];
         const itemPrice = parseFloat(priceObj.price);
@@ -41,7 +41,7 @@ const myStore = create((set, get) => ({
         });
     },
 
-    removeFromCart: (itemId, size = "S") => {
+    removeFromCart: (itemId, size) => {
         const { cartList, cartPrice } = get();
         const targetItem = cartList.find(
             cartItem => cartItem.id === itemId && cartItem.size === size
