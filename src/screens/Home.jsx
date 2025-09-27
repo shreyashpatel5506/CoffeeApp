@@ -1,7 +1,8 @@
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, ScrollView, TextInput } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, ScrollView, TextInput } from 'react-native'
 import React, { useState, useMemo } from 'react'
 import myStore from '../store/store'
 import Card from "../Components/Card.js"
+import { HomeStyles } from '../style.js'
 
 export default function Home() {
     const { CoffeeList, BeansList } = myStore();
@@ -22,16 +23,16 @@ export default function Home() {
             : CoffeeList.filter(item => item.name === selectedCategoryCoffee);
 
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView style={HomeStyles.container}>
             {/* 🔸 Header */}
-            <View style={styles.box}>
-                <Text style={styles.firstText}>Find the best{"\n"}coffee for you</Text>
+            <View style={HomeStyles.box}>
+                <Text style={HomeStyles.firstText}>Find the best{"\n"}coffee for you</Text>
             </View>
 
             {/* 🔸 Search Bar */}
-            <View style={styles.searchContainer}>
+            <View style={HomeStyles.searchContainer}>
                 <TextInput
-                    style={styles.searchInput}
+                    style={HomeStyles.searchInput}
                     placeholder="Search coffee..."
                     value={searchQuery}
                     onChangeText={setSearchQuery}
@@ -49,14 +50,14 @@ export default function Home() {
                     <TouchableOpacity
                         onPress={() => setSelectedCategoryCoffee(item)}
                         style={[
-                            styles.categoryButton,
-                            selectedCategoryCoffee === item && styles.activeCategory,
+                            HomeStyles.categoryButton,
+                            selectedCategoryCoffee === item && HomeStyles.activeCategory,
                         ]}
                     >
                         <Text
                             style={[
-                                styles.categoryText,
-                                selectedCategoryCoffee === item && styles.activeText,
+                                HomeStyles.categoryText,
+                                selectedCategoryCoffee === item && HomeStyles.activeText,
                             ]}
                         >
                             {item}
@@ -66,7 +67,7 @@ export default function Home() {
             />
 
             {/* 🔸 Coffee list */}
-            <Text style={styles.sectionTitle}>Coffee</Text>
+            <Text style={HomeStyles.sectionTitle}>Coffee</Text>
             <FlatList
                 data={filterCoffeeData}
                 horizontal
@@ -76,7 +77,7 @@ export default function Home() {
             />
 
             {/* 🔸 Beans Section */}
-            <Text style={styles.sectionTitle}>Coffee beans</Text>
+            <Text style={HomeStyles.sectionTitle}>Coffee beans</Text>
             <FlatList
                 data={BeansList}
                 horizontal
@@ -88,55 +89,4 @@ export default function Home() {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingHorizontal: 15,
-        backgroundColor: "#fff", // you can change to "#000" if you want dark theme
-    },
-    box: {
-        marginTop: 20,
-        marginBottom: 10,
-    },
-    firstText: {
-        fontSize: 28,
-        fontWeight: "700",
-    },
-    categoryButton: {
-        paddingVertical: 8,
-        paddingHorizontal: 15,
-        borderRadius: 20,
-        borderWidth: 1,
-        borderColor: "#ccc",
-        marginRight: 10,
-    },
-    activeCategory: {
-        backgroundColor: "#007BFF",
-    },
-    categoryText: {
-        color: "#333",
-        fontWeight: "600",
-    },
-    activeText: {
-        color: "#fff",
-    },
-    sectionTitle: {
-        fontSize: 20,
-        fontWeight: "700",
-        marginVertical: 15,
-    },
-    searchContainer: {
-        marginVertical: 10,
-    },
-    searchInput: {
-        height: 40,
-        borderColor: '#ccc',
-        borderWidth: 1,
-        borderRadius: 20,
-        paddingHorizontal: 15,
-        backgroundColor: '#f9f9f9',
-        fontSize: 16,
-        color: '#333',
-    },
 
-});
