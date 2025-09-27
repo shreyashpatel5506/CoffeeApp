@@ -43,7 +43,7 @@ const ProductDetail = ({ route }) => {
             </View>
 
             {/* Top Info Section */}
-            <View style={[ProductStyles.card, ProductStyles.dime]} >
+            <View style={ProductStyles.cardmain} >
                 <Text style={ProductStyles.name}>{item.name}</Text>
                 <Text style={ProductStyles.subText}>{item.special_ingredient}</Text>
                 <Text style={ProductStyles.roast}>{item.roasted}</Text>

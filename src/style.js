@@ -67,19 +67,7 @@ export const ProductStyles = StyleSheet.create({
         height: 600,
         borderRadius: 20,
     },
-    fixedBottomRow: {
-        position: "absolute",
-        left: 0,
-        right: 0,
-        bottom: 0,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: 20,
-        backgroundColor: "#141921", // same tone as card
-        borderTopWidth: 1,
-        borderTopColor: "rgba(255,255,255,0.1)",
-    },
+
 
     imageOverlay: {
         position: "absolute",
@@ -101,8 +89,16 @@ export const ProductStyles = StyleSheet.create({
         padding: 15,
         borderRadius: 15,
         marginBottom: 15,
-        top: -154,
+
     },
+    cardmain: {
+        backgroundColor: "#1419215e",
+        padding: 15,
+        borderRadius: 15,
+        marginBottom: 15,
+        marginTop: -154,
+    },
+
     name: {
         color: "#fff",
         fontSize: 24,
@@ -171,8 +167,9 @@ export const ProductStyles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        marginTop: 20,
-        marginBottom: 30,
+        marginTop: 10,
+        marginBottom: 60,
+        paddingLeft: 10
     },
     priceLabel: {
         color: "#aaa",
@@ -338,3 +335,4 @@ export const CardStyle = StyleSheet.create({
         marginRight: 3
     }
 })
+
