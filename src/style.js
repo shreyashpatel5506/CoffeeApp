@@ -49,8 +49,6 @@ export const WelcomeStyle = StyleSheet.create({
     },
 });
 
-
-
 export const ProductStyles = StyleSheet.create({
     container: {
         flex: 1,

@@ -9,11 +9,15 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import LinearGradient from "react-native-linear-gradient";
 import { ProductStyles } from "../style";
+import myStore from "../store/store";
 
 const ProductDetail = ({ route }) => {
     const { item } = route.params;
     const [selectedSize, setSelectedSize] = useState(item.prices[0]);
-    const [favourite, setFavourite] = useState(item.favourite);
+
+    // Get actions and state from store
+    const { FavouriteList, addToFavourite, removeFromFavourite, addToCart } = myStore();
+    const isFavourite = FavouriteList.some(fav => fav.id === item.id);
 
     return (
         <ScrollView style={ProductStyles.container} showsVerticalScrollIndicator={false}>
@@ -26,11 +30,13 @@ const ProductDetail = ({ route }) => {
                 />
                 <TouchableOpacity
                     style={ProductStyles.heartBtn}
-                    onPress={() => setFavourite(!favourite)}
+                    onPress={() => {
+                        isFavourite ? removeFromFavourite(item.id) : addToFavourite(item);
+                    }}
                 >
                     <AntDesign
-                        name={favourite ? "heart" : "hearto"}
-                        color={favourite ? "red" : "#fff"}
+                        name={isFavourite ? "heart" : "hearto"}
+                        color={isFavourite ? "red" : "#fff"}
                         size={26}
                     />
                 </TouchableOpacity>
@@ -92,7 +98,10 @@ const ProductDetail = ({ route }) => {
                         {selectedSize.currency} {selectedSize.price}
                     </Text>
                 </View>
-                <TouchableOpacity style={ProductStyles.cartBtn}>
+                <TouchableOpacity
+                    style={ProductStyles.cartBtn}
+                    onPress={() => addToCart(item, selectedSize.size)}
+                >
                     <Text style={ProductStyles.cartText}>Add to Cart</Text>
                 </TouchableOpacity>
             </View>
