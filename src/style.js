@@ -518,3 +518,116 @@ export const CartitemStyle = StyleSheet.create({
         padding: 4,
     }
 })
+
+export const CartStyle = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    gradient: {
+        flex: 1,
+        width: '100%',
+    },
+    listContainer: {
+        flex: 1,
+        width: '100%',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 10,
+    },
+    emptyContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    emptyBox: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    emptyCircle: {
+        width: 120,
+        height: 120,
+        borderRadius: 60,
+        backgroundColor: '#232b3b',
+        justifyContent: 'center',
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOpacity: 0.15,
+        shadowOffset: { width: 0, height: 4 },
+        shadowRadius: 8,
+        elevation: 6,
+    },
+    innerCircle: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        backgroundColor: '#d17842',
+    },
+    emptyText: {
+        color: '#fff',
+        fontSize: 20,
+        marginTop: 20,
+        fontFamily: ''
+    },
+    emptysubText: {
+        fontSize: 18,
+        color: "#757474ff"
+    },
+    totalContainer: {
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        marginBottom: 15
+    },
+    totalText: {
+        width: 80,
+        fontSize: 14,
+        lineHeight: 22,
+        fontWeight: "500",
+        fontFamily: "Poppins-Medium",
+        color: "#aeaeae",
+        textAlign: "left"
+    },
+    text: {
+        width: 70,
+        fontSize: 24,
+        lineHeight: 24,
+        fontWeight: "600",
+        fontFamily: "Poppins-SemiBold",
+        textAlign: "left"
+    },
+    text2: {
+        color: "#d17842"
+    },
+    text3: {
+        color: "#aeaeae"
+    },
+    text4: {
+        color: "#fff"
+    },
+    checkoutButton: {
+        height: 60,
+        width: 200,
+        backgroundColor: "#d17842",
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        borderRadius: 25
+    },
+    checkoutText: {
+        fontSize: 20,
+
+        fontWeight: "800",
+        fontFamily: "Poppins-SemiBold",
+        color: "#fff",
+        textAlign: "center"
+    },
+    separator: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 25,
+        marginBottom: 25,
+        alignItems: 'center',
+        width: '100%',
+    }
+})
