@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
     View,
     Text,
@@ -16,12 +16,33 @@ const ProductDetail = ({ route }) => {
     const [selectedSize, setSelectedSize] = useState(item.prices[0]);
 
     // Get actions and state from store
-    const { FavouriteList, addToFavourite, removeFromFavourite, addToCart, cartList } = myStore();
+    // We only need cartList to show the user how many are already added (optional toast/notification),
+    // but we will primarily use addToCart.
+    const {
+        FavouriteList,
+        addToFavourite,
+        removeFromFavourite,
+        addToCart,
+        // cartList, // Removed, as we don't need quantity checks for the UI here
+        // incrementQuantity, // Removed, as we don't need quantity controls here
+        // decrementQuantity, // Removed, as we don't need quantity controls here
+    } = myStore();
+
+    // Re-check for favourite status
     const isFavourite = FavouriteList.some(fav => fav.id === item.id);
+
+    /* *** LOGIC REMOVED ***
+    The following pieces of logic are removed because quantity management 
+    is moved to the CartScreen:
+    - useMemo hook for cartItem
+    - currentQuantity calculation
+    - handleAddToCart helper (it was for conditional increment/add)
+    - handleDecrement helper
+    */
 
     return (
         <ScrollView style={ProductStyles.container} showsVerticalScrollIndicator={true}>
-            {/* Product Image with Favourite */}
+            {/* Product Image with Favourite Button */}
             <View style={ProductStyles.imageWrapper}>
                 <Image source={item.imagelink_portrait} style={ProductStyles.image} />
                 <LinearGradient
@@ -90,16 +111,20 @@ const ProductDetail = ({ route }) => {
                 </View>
             </View>
 
-            {/* Price + Add to Cart */}
+            {/* Price + Add to Cart Button (Simplified to always show "Add to Cart") */}
             <View style={ProductStyles.bottomRow}>
+                {/* Price Display */}
                 <View>
                     <Text style={ProductStyles.priceLabel}>Price</Text>
                     <Text style={ProductStyles.price}>
                         {selectedSize.currency} {selectedSize.price}
                     </Text>
                 </View>
+
+                {/* Always show the Add to Cart button */}
                 <TouchableOpacity
                     style={ProductStyles.cartBtn}
+                    // Simply call addToCart with the selected item and size
                     onPress={() => addToCart(item, selectedSize.size)}
                 >
                     <Text style={ProductStyles.cartText}>Add to Cart</Text>

@@ -336,3 +336,83 @@ export const CardStyle = StyleSheet.create({
     }
 })
 
+export const CartitemStyle = StyleSheet.create({
+    container: {
+        width: 300,
+        height: 'auto',
+        borderRadius: 25,
+        backgroundColor: '#262B33',
+        marginEnd: 12,
+        paddingVertical: 12,
+        paddingHorizontal: 15
+    },
+    gradient: {
+        flex: 1,
+    },
+    FIRSTRow: {
+        width: 250,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        paddingHorizontal: 7,
+        borderRadius: 25
+
+    },
+    imageContainer: {
+        width: 150,
+        height: 150,
+        padding: 5,
+        borderRadius: 10,
+    },
+    image: {
+        width: 110,
+        height: 110,
+        borderRadius: 10,
+    },
+    aboutsection: {
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+    },
+    name: {
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        gap: 5,
+        alignItems: 'baseline',
+    },
+    nameText: {
+        width: 99,
+        fontSize: 18,
+        lineHeight: 20,
+        fontFamily: "Poppins-Regular",
+        color: '#fff',
+    },
+    subText: {
+        width: 93,
+        fontSize: 12,
+        lineHeight: 20,
+        fontFamily: "Poppins-Regular",
+        color: '#AEAEAE'
+    },
+    parent: {
+        flex: 1,
+        backgroundColor: "#141921",
+        width: 100,
+        height: 40,
+        borderRadius: 10,
+        textAlign: 'center',
+        alignItems: 'center',
+        paddingTop: 15,
+        paddingLeft: 6
+    },
+    subTextname: {
+        width: 86,
+        fontSize: 10,
+        lineHeight: 20,
+        fontWeight: "500",
+        fontFamily: "Poppins-Medium",
+        color: "#aeaeae",
+        textAlign: "left"
+    }
+
+})

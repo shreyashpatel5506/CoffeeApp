@@ -20,7 +20,7 @@ const Card = ({ item }) => {
             >
 
                 <View style={CardStyle.imageContainer}>
-                    <Image source={item.imagelink_portrait} style={CardStyle.image} />
+                    <Image source={item.imagelink_square} style={CardStyle.image} />
                     <View style={CardStyle.ratingBadge}>
                         <Text style={CardStyle.star}>★</Text>
                         <Text style={CardStyle.ratingText}>{item.average_rating}</Text>

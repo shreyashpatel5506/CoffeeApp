@@ -13,65 +13,145 @@ const myStore = create((set, get) => ({
     cartPrice: 0,
     OrderHistory: [],
 
-    // ---------- ACTIONS ----------
+    // ---------- CART ACTIONS ----------
+
+    /**
+     * Adds an item to the cart or increments its quantity if it already exists.
+     * Stores the unitPrice to ensure accurate quantity/price updates later.
+     * @param {Object} item - The full item object.
+     * @param {string} size - The selected size (e.g., 'S', 'M', 'L').
+     */
     addToCart: (item, size) => {
-        const { cartList, cartPrice } = get();
+        const { cartList } = get();
+
+        // 1. Find the price object for the selected size
         const priceObj = item.prices.find(p => p.size === size) || item.prices[0];
         const itemPrice = parseFloat(priceObj.price);
 
-        // Check if item of the same size already exists
-        const updatedCart = cartList.map(cartItem => {
-            if (cartItem.id === item.id && cartItem.size === size) {
-                return { ...cartItem, quantity: cartItem.quantity + 1 };
-            }
-            return cartItem;
-        });
-
-        // Add new item if it wasn't found
-        const itemExists = cartList.some(
+        // 2. Check if item of the same size already exists
+        const existingItemIndex = cartList.findIndex(
             cartItem => cartItem.id === item.id && cartItem.size === size
         );
-        const newCartList = itemExists
-            ? updatedCart
-            : [...cartList, { ...item, quantity: 1, size }];
+
+        let newCartList;
+        if (existingItemIndex !== -1) {
+            // Item exists, increase quantity
+            newCartList = cartList.map((cartItem, index) => {
+                if (index === existingItemIndex) {
+                    const newQuantity = cartItem.quantity + 1;
+                    const newPrice = newQuantity * cartItem.unitPrice;
+                    return { ...cartItem, quantity: newQuantity, price: newPrice };
+                }
+                return cartItem;
+            });
+        } else {
+            // Item is new, add it
+            const newCartItem = {
+                ...item,
+                quantity: 1,
+                size: size,
+                unitPrice: itemPrice, // Store the unit price
+                price: itemPrice, // Initial total price for 1 quantity
+            };
+            newCartList = [...cartList, newCartItem];
+        }
+
+        // 3. Recalculate total cart price
+        const newCartPrice = newCartList.reduce((acc, item) => acc + item.price, 0);
 
         set({
             cartList: newCartList,
-            cartPrice: cartPrice + itemPrice,
+            cartPrice: newCartPrice,
         });
     },
 
-    removeFromCart: (itemId, size) => {
-        const { cartList, cartPrice } = get();
-        const targetItem = cartList.find(
-            cartItem => cartItem.id === itemId && cartItem.size === size
-        );
-        if (!targetItem) return;
+    /**
+     * Increases the quantity of a specific item in the cart.
+     * @param {string} id - The ID of the item.
+     * @param {string} size - The size of the item.
+     */
+    incrementQuantity: (id, size) => {
+        const { cartList } = get();
+        const updatedCartList = cartList.map(item => {
+            if (item.id === id && item.size === size) {
+                const newQuantity = item.quantity + 1;
+                const newPrice = newQuantity * item.unitPrice;
+                return { ...item, quantity: newQuantity, price: newPrice };
+            }
+            return item;
+        });
 
-        const priceObj =
-            targetItem.prices.find(p => p.size === size) || targetItem.prices[0];
-        const itemPrice = parseFloat(priceObj.price);
+        const newCartPrice = updatedCartList.reduce((acc, item) => acc + item.price, 0);
+
+        set({
+            cartList: updatedCartList,
+            cartPrice: newCartPrice,
+        });
+    },
+
+    /**
+     * Decreases the quantity of a specific item. Removes the item if quantity hits 0.
+     * @param {string} id - The ID of the item.
+     * @param {string} size - The size of the item.
+     */
+    decrementQuantity: (id, size) => {
+        const { cartList } = get();
+
+        const existingItemIndex = cartList.findIndex(
+            cartItem => cartItem.id === id && cartItem.size === size
+        );
+
+        if (existingItemIndex === -1) return;
+
+        const itemToUpdate = cartList[existingItemIndex];
 
         let newCartList;
-        if (targetItem.quantity > 1) {
-            newCartList = cartList.map(cartItem =>
-                cartItem.id === itemId && cartItem.size === size
-                    ? { ...cartItem, quantity: cartItem.quantity - 1 }
-                    : cartItem
-            );
+        if (itemToUpdate.quantity > 1) {
+            // Decrease quantity (Quantity > 1)
+            newCartList = cartList.map((item, index) => {
+                if (index === existingItemIndex) {
+                    const newQuantity = item.quantity - 1;
+                    const newPrice = newQuantity * item.unitPrice;
+                    return { ...item, quantity: newQuantity, price: newPrice };
+                }
+                return item;
+            });
         } else {
-            newCartList = cartList.filter(
-                cartItem => !(cartItem.id === itemId && cartItem.size === size)
-            );
+            // Remove item entirely (Quantity = 1)
+            newCartList = cartList.filter((_, index) => index !== existingItemIndex);
         }
+
+        const newCartPrice = newCartList.reduce((acc, item) => acc + item.price, 0);
 
         set({
             cartList: newCartList,
-            cartPrice: Math.max(cartPrice - itemPrice, 0),
+            cartPrice: newCartPrice,
+        });
+    },
+
+    /**
+     * Removes all units of a specific item and size from the cart.
+     * @param {string} id - The ID of the item.
+     * @param {string} size - The size of the item.
+     */
+    removeItemFully: (id, size) => {
+        const { cartList } = get();
+
+        const newCartList = cartList.filter(
+            cartItem => !(cartItem.id === id && cartItem.size === size)
+        );
+
+        const newCartPrice = newCartList.reduce((acc, item) => acc + item.price, 0);
+
+        set({
+            cartList: newCartList,
+            cartPrice: newCartPrice,
         });
     },
 
     clearCart: () => set({ cartList: [], cartPrice: 0 }),
+
+    // ---------- FAVOURITE ACTIONS ----------
 
     addToFavourite: item =>
         set(state => {
@@ -83,6 +163,8 @@ const myStore = create((set, get) => ({
         set(state => ({
             FavouriteList: state.FavouriteList.filter(fav => fav.id !== itemId),
         })),
+
+    // ---------- ORDER HISTORY ACTIONS ----------
 
     addOrder: async order => {
         const newOrderHistory = [...get().OrderHistory, order];
@@ -104,6 +186,8 @@ const myStore = create((set, get) => ({
             console.error("Failed to load order history:", error);
         }
     },
+
+    // ---------- UTILITY ACTIONS (Example) ----------
 
     increment: () => set(state => ({ count: state.count + 1 })),
     decrement: () => set(state => ({ count: Math.max(state.count - 1, 0) })),
