@@ -72,28 +72,27 @@ const myStore = create((set, get) => ({
      */
     incrementQuantity: (id, size) => {
         const { cartList } = get();
+
+        // Update only the matched item
         const updatedCartList = cartList.map(item => {
             if (item.id === id && item.size === size) {
                 const newQuantity = item.quantity + 1;
-                const newPrice = newQuantity * item.unitPrice;
+                const newPrice = newQuantity * item.unitPrice; // only this item's total price
                 return { ...item, quantity: newQuantity, price: newPrice };
             }
             return item;
         });
 
+        // Recalculate total cart price
         const newCartPrice = updatedCartList.reduce((acc, item) => acc + item.price, 0);
 
+        // Save updated cart
         set({
             cartList: updatedCartList,
             cartPrice: newCartPrice,
         });
     },
 
-    /**
-     * Decreases the quantity of a specific item. Removes the item if quantity hits 0.
-     * @param {string} id - The ID of the item.
-     * @param {string} size - The size of the item.
-     */
     decrementQuantity: (id, size) => {
         const { cartList } = get();
 
@@ -107,27 +106,30 @@ const myStore = create((set, get) => ({
 
         let newCartList;
         if (itemToUpdate.quantity > 1) {
-            // Decrease quantity (Quantity > 1)
+            // Just decrease quantity for this item
             newCartList = cartList.map((item, index) => {
                 if (index === existingItemIndex) {
                     const newQuantity = item.quantity - 1;
-                    const newPrice = newQuantity * item.unitPrice;
+                    const newPrice = newQuantity * item.unitPrice; // only this item's price
                     return { ...item, quantity: newQuantity, price: newPrice };
                 }
                 return item;
             });
         } else {
-            // Remove item entirely (Quantity = 1)
+            // Remove the item if quantity hits 0
             newCartList = cartList.filter((_, index) => index !== existingItemIndex);
         }
 
+        // Recalculate cart total
         const newCartPrice = newCartList.reduce((acc, item) => acc + item.price, 0);
 
+        // Save updated cart
         set({
             cartList: newCartList,
             cartPrice: newCartPrice,
         });
     },
+
 
     /**
      * Removes all units of a specific item and size from the cart.

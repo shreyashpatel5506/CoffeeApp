@@ -20,7 +20,7 @@ const Cart = () => {
     const grouped = useMemo(() => groupCartItems(cartList), [cartList]);
 
     return (
-        <View>
+        <View style={{ flex: 1, alignItems: 'center', paddingTop: 20 }}>
             <FlatList
                 data={grouped}
                 keyExtractor={(group) => group[0].id.toString()}

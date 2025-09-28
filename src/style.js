@@ -338,41 +338,45 @@ export const CardStyle = StyleSheet.create({
 
 export const CartitemStyle = StyleSheet.create({
     container: {
-        width: 300,
+        width: 350,
         height: 'auto',
         borderRadius: 25,
         backgroundColor: '#262B33',
         marginEnd: 12,
-        paddingVertical: 12,
-        paddingHorizontal: 15
+        padding: 10,
+        margin: 20,
+
     },
     gradient: {
         flex: 1,
+        borderRadius: 25,
+        padding: 10,
     },
     FIRSTRow: {
-        width: 250,
+        width: '100%',
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 7,
         borderRadius: 25
 
     },
     imageContainer: {
-        width: 150,
-        height: 150,
+        width: 140,
+        height: 140,
         padding: 5,
         borderRadius: 10,
     },
     image: {
-        width: 110,
-        height: 110,
+        width: 130,
+        height: 130,
         borderRadius: 10,
     },
     aboutsection: {
         flexDirection: 'column',
         justifyContent: 'space-evenly',
-        alignItems: 'center'
+        alignItems: 'center',
+        gap: 8,
     },
     name: {
         flexDirection: 'column',
@@ -413,6 +417,104 @@ export const CartitemStyle = StyleSheet.create({
         fontFamily: "Poppins-Medium",
         color: "#aeaeae",
         textAlign: "left"
-    }
+    },
+    sizeRow: {
 
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+    },
+    size: {
+        paddingVertical: 7,
+        paddingHorizontal: 15,
+        textAlign: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        backgroundColor: '#18202eff',
+        borderRadius: 10,
+        marginRight: 10,
+
+    },
+    sizeText: {
+        fontSize: 16,
+        lineHeight: 20,
+        fontWeight: "500",
+        fontFamily: "Poppins-Medium",
+        color: "#fff",
+        textAlign: "left"
+    },
+    text: {
+        width: 61,
+        fontSize: 20,
+        lineHeight: 20,
+        fontWeight: "600",
+        fontFamily: "Poppins-SemiBold",
+        textAlign: "left"
+    },
+    text2: {
+        color: "#d17842"
+    },
+    text3: {
+        color: "#fff"
+    },
+
+    qanitityRow: {
+        width: '100%',
+        paddingVertical: 7,
+        paddingHorizontal: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        marginLeft: 'auto'
+    },
+    mulitplesizequnatity: {
+        width: 200,
+
+    },
+    sizemultiqanitiy: {
+        width: 100,
+    },
+    box: {
+        width: 32,
+        height: 32,
+        borderRadius: 10, // square with rounded edges
+        backgroundColor: "#FF8C32",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    qantityText: {
+
+        fontSize: 16,
+        lineHeight: 20,
+        fontWeight: "600",
+        fontFamily: "Poppins-SemiBold",
+        color: "#fff",
+        textAlign: "left"
+    },
+    qanutity: {
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 7,
+        paddingBottom: 7,
+        borderStyle: "solid",
+        borderColor: "#d17842",
+        borderWidth: 2,
+        borderRadius: 5,
+
+    },
+    itemRow: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginVertical: 10,
+        marginLeft: 20,
+    },
+    delbutton: {
+        position: 'absolute',
+        top: 10,
+        left: 10,
+        zIndex: 10,
+        backgroundColor: '#ff4d4d',
+        borderRadius: 15,
+        padding: 4,
+    }
 })

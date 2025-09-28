@@ -1,11 +1,13 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Pressable } from 'react-native';
 import React from 'react';
 import { CartitemStyle } from '../style';
 import LinearGradient from 'react-native-linear-gradient';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import myStore from '../store/store';
 
-// group: array of cart items with same product id, possibly different sizes
 const Cartitem = ({ group }) => {
-    // If only one size in cart for this product, show compact card (second UI)
+    const { incrementQuantity, decrementQuantity, removeItemFully } = myStore();
+
     if (group.length === 1) {
         const item = group[0];
         return (
@@ -16,6 +18,12 @@ const Cartitem = ({ group }) => {
                     end={{ x: 1, y: 1 }}
                     style={CartitemStyle.gradient}
                 >
+                    <Pressable
+                        style={CartitemStyle.delbutton}
+                        onPress={() => removeItemFully(item.id, item.size)}
+                    >
+                        <Ionicons name="close" size={18} color="#fff" />
+                    </Pressable>
                     <View style={CartitemStyle.FIRSTRow}>
                         <View style={CartitemStyle.imageContainer}>
                             <Image source={item.imagelink_square} style={CartitemStyle.image} />
@@ -25,19 +33,47 @@ const Cartitem = ({ group }) => {
                                 <Text style={CartitemStyle.nameText}>{item.name}</Text>
                                 <Text style={CartitemStyle.subText}>{item.special_ingredient}</Text>
                             </View>
-                            <View style={CartitemStyle.parent}>
-                                <Text style={CartitemStyle.subTextname}>{item.roasted}</Text>
+                            <View style={CartitemStyle.sizeRow}>
+
+                                <View style={CartitemStyle.size}>
+                                    <Text style={CartitemStyle.sizeText}>{item.size}</Text>
+                                </View>
+
+                                <Text style={CartitemStyle.text}>
+                                    <Text style={CartitemStyle.text2}>$</Text>
+                                    <Text style={CartitemStyle.text3}>{(item.price).toFixed(2)}</Text>
+                                </Text>
                             </View>
-                            <Text style={{ color: '#fff', fontWeight: 'bold', marginTop: 8 }}> {item.size}   {item.unitPrice} x {item.quantity} = {item.price.toFixed(2)} </Text>
+
                         </View>
+                    </View>
+
+                    <View style={CartitemStyle.qanitityRow}>
+                        <Pressable style={
+                            CartitemStyle.box
+                        }
+                            disabled={item.quantity === 1}
+                            onPress={() => decrementQuantity(item.id, item.size)}>
+                            <Ionicons name="remove" size={28} color={item.quantity === 1 ? '#888' : '#fff'} />
+                        </Pressable>
+                        <View style={CartitemStyle.qanutity}>
+                            <Text style={CartitemStyle.qantityText}
+                            >
+                                {item.quantity}
+                            </Text>
+                        </View>
+                        <Pressable style={
+                            CartitemStyle.box
+                        }
+                            onPress={() => incrementQuantity(item.id, item.size)}>
+                            <Ionicons name="add" size={28} color="#FFf" />
+                        </Pressable>
                     </View>
                 </LinearGradient>
             </View>
         );
     }
 
-    // If multiple sizes, show grouped card (first UI)
-    // Show product info and a row for each size
     const item = group[0];
     return (
         <View style={CartitemStyle.container}>
@@ -47,6 +83,12 @@ const Cartitem = ({ group }) => {
                 end={{ x: 1, y: 1 }}
                 style={CartitemStyle.gradient}
             >
+                <Pressable
+                    style={CartitemStyle.delbutton}
+                    onPress={() => removeItemFully(item.id, item.size)}
+                >
+                    <Ionicons name="close" size={18} color="#fff" />
+                </Pressable>
                 <View style={CartitemStyle.FIRSTRow}>
                     <View style={CartitemStyle.imageContainer}>
                         <Image source={item.imagelink_square} style={CartitemStyle.image} />
@@ -63,13 +105,41 @@ const Cartitem = ({ group }) => {
                 </View>
                 {/* Render a row for each size in the group */}
                 {group.map((g, idx) => (
-                    <View key={g.size} style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10, marginLeft: 20 }}>
-                        <Text style={{ color: '#fff', fontWeight: 'bold', width: 30 }}>{g.size}</Text>
-                        <Text style={{ color: '#f08c00', fontWeight: 'bold', width: 60 }}>
-                            {g.unitPrice} x {g.quantity} = {g.price.toFixed(2)}
-                        </Text>
-                        {/* Quantity controls could go here if needed */}
+                    <View style={CartitemStyle.itemRow}>
+                        <View style={[CartitemStyle.sizeRow, CartitemStyle.sizemultiqanitiy]}>
+
+                            {/* Size */}
+                            <View style={CartitemStyle.size}>
+                                <Text style={CartitemStyle.sizeText}>{g.size}</Text>
+                            </View>
+
+                            {/* Price */}
+                            <Text style={CartitemStyle.text}>
+                                <Text style={CartitemStyle.text2}>$</Text>
+                                <Text style={CartitemStyle.text3}>{(g.unitPrice * g.quantity).toFixed(2)}</Text>
+                            </Text>
+                        </View>
+
+                        {/* Quantity Controls */}
+                        <View style={[CartitemStyle.qanitityRow, CartitemStyle.mulitplesizequnatity]}>
+                            <Pressable style={CartitemStyle.box}
+                                onPress={() => decrementQuantity(g.id, g.size)}
+                                disabled={g.quantity === 1}>
+                                <Ionicons name="remove" size={20} color={g.quantity === 1 ? '#888' : '#fff'} />
+                            </Pressable>
+
+                            <View style={CartitemStyle.qanutity}>
+                                <Text style={CartitemStyle.qantityText}>{g.quantity}</Text>
+                            </View>
+
+                            <Pressable style={CartitemStyle.box}
+                                onPress={() => incrementQuantity(g.id, g.size)}>
+                                <Ionicons name="add" size={20} color="#fff" />
+                            </Pressable>
+                        </View>
                     </View>
+
+
                 ))}
             </LinearGradient>
         </View>
