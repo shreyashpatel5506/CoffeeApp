@@ -699,3 +699,246 @@ export const FavouriteStyle = StyleSheet.create({
     }
 
 })
+
+export const PaymentSuccessStyle = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    card: {
+        width: '85%',
+        backgroundColor: '#1e2c42',
+        borderRadius: 16,
+        padding: 30,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOpacity: 0.25,
+        shadowRadius: 8,
+        shadowOffset: { width: 0, height: 4 },
+    },
+
+    // --- NEW: SUCCESS ICON STYLE ---
+    successIcon: {
+        marginBottom: 20,
+    },
+
+    // --- TITLE/SUBTITLE ---
+    title: {
+        fontSize: 28, // Larger title for impact
+        color: '#fff',
+        marginBottom: 8,
+        fontWeight: 'bold',
+    },
+    subtitle: { // Added for a brief message below the title
+        fontSize: 16,
+        color: '#ccc',
+        marginBottom: 30,
+        textAlign: 'center',
+    },
+
+    // --- NEW: ORDER DETAILS SUMMARY CONTAINER (Replaces 'info' style) ---
+    detailContainer: {
+        width: '100%',
+        paddingVertical: 15,
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
+        borderColor: '#3a4b67', // Divider color
+        marginBottom: 30,
+    },
+    detailRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingVertical: 6,
+    },
+    detailLabel: {
+        fontSize: 16,
+        color: '#ccc',
+        fontWeight: '400',
+    },
+    detailValue: {
+        fontSize: 16,
+        color: '#fff',
+        fontWeight: '600',
+    },
+
+    primaryButton: {
+        marginTop: 30,
+        backgroundColor: '#e8995a', // Primary action color
+        paddingVertical: 14,
+        paddingHorizontal: 60,
+        borderRadius: 10,
+        borderWidth: 2,
+        borderColor: '#c75b03ff',
+        width: '100%', // Made full width for prominence
+        alignItems: 'center',
+    },
+    primaryButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 16,
+    },
+
+});
+
+export const PaymentStyle = StyleSheet.create({
+    container: {
+        flex: 1,
+        // Base dark background
+    },
+    scrollContent: {
+        paddingHorizontal: 20,
+        paddingBottom: 120, // Make space for the fixed bottom bar
+    },
+    header: {
+
+        paddingHorizontal: 20,
+        paddingBottom: 20,
+    },
+    title: {
+        fontSize: 18,
+        color: '#fff',
+        fontWeight: 'bold',
+        textAlign: 'left',
+    },
+
+    // --- Credit Card Styles ---
+    creditCard: {
+        // Dark card background
+
+        padding: 10,
+        marginTop: 10,
+        borderWidth: 2,
+        borderColor: '',
+        borderRadius: 25,
+    },
+    creditCardSelected: {
+        borderColor: '#e8995a', // Orange border when selected
+    },
+    cardHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 30,
+        padding: 15
+    },
+    absoluteFill: {
+        flex: 1,
+        borderRadius: 25
+    },
+    cardType: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#f2f2f2',
+    },
+    cardNumber: {
+        fontSize: 20,
+        color: '#f2f2f2',
+        letterSpacing: 3,
+        marginBottom: 30,
+        textAlign: 'center',
+    },
+    cardFooter: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 15
+    },
+    cardLabel: {
+        fontSize: 12,
+        color: '#a0a0a0',
+        marginBottom: 4,
+    },
+    cardValue: {
+        fontSize: 15,
+        color: '#f2f2f2',
+        fontWeight: '600',
+    },
+
+    // --- Payment Options Styles ---
+    optionsList: {
+        marginTop: 20,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 10
+    },
+    optionContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        gap: 12,
+        borderRadius: 12,
+        paddingVertical: 18,
+        paddingHorizontal: 20,
+        marginBottom: 10,
+        borderWidth: 1.5,
+        borderColor: 'transparent',
+    },
+    optionSelected: {
+        borderColor: '#e8995a',
+    },
+    optionLeft: {
+        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    optionText: {
+        fontSize: 16,
+        color: '#f2f2f2',
+        marginLeft: 15,
+        fontWeight: '500',
+    },
+    optionBalance: {
+        fontSize: 16,
+        color: '#a0a0a0',
+        fontWeight: '400',
+    },
+
+    // --- Bottom Bar Styles (Fixed) ---
+    bottomBar: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        backgroundColor: '#172130ff', // Dark background for the footer
+        borderTopWidth: 1,
+        borderTopColor: '#2f2f2f',
+    },
+    priceContainer: {
+        alignItems: 'flex-start',
+    },
+    priceLabel: {
+        fontSize: 12,
+        color: '#a0a0a0',
+        marginBottom: 2,
+    },
+    finalPrice: {
+        fontSize: 24,
+        color: '#f2f2f2',
+        fontWeight: 'bold',
+    },
+
+    // --- Pay Button Styles ---
+    payButton: {
+        backgroundColor: '#e8995a', // The distinct orange/brown color from the image
+        borderRadius: 10,
+        paddingVertical: 15,
+        paddingHorizontal: 30,
+        minWidth: '55%',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    payButtonLoading: {
+        backgroundColor: '#c07b46', // Darker shade when loading
+    },
+    payButtonText: {
+        color: '#1c1c1c', // Dark text for high contrast on the orange button
+        fontWeight: 'bold',
+        fontSize: 16,
+    },
+});
