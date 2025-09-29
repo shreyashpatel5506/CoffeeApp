@@ -7,7 +7,7 @@ import Home from "../screens/Home.jsx";
 import ProductDetail from "../screens/ProductDetail.jsx";
 import Payment from "../screens/Payment.jsx"
 import PaymentSuccess from "../screens/PaymentSuccess.jsx"
-
+import Profile from "../screens/Profile.jsx"
 const Stack = createStackNavigator();
 
 const RootStack = () => {
@@ -19,9 +19,12 @@ const RootStack = () => {
             <Stack.Screen name="MenuTabs" component={Menu} />
 
             <Stack.Screen name="Home" component={Home} />
+
             <Stack.Screen name="ProductDetail" component={ProductDetail} />
+
             <Stack.Screen name="Payment" component={Payment} />
             <Stack.Screen name="PaymentSuccess" component={PaymentSuccess} />
+
         </Stack.Navigator>
     );
 };

@@ -942,3 +942,110 @@ export const PaymentStyle = StyleSheet.create({
         fontSize: 16,
     },
 });
+
+export const ProfileStyle = StyleSheet.create({
+    Container: {
+        flex: 1,
+    },
+
+    // --- User Info Card ---
+    userInfoCard: {
+        alignItems: 'center',
+        padding: 30,
+        backgroundColor: '#1e2c42',
+        borderRadius: 16,
+        marginVertical: 25,
+    },
+    profileImage: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        marginBottom: 15,
+        borderWidth: 3,
+        borderColor: '#e8995a', // Accent color border
+    },
+    userName: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#fff',
+    },
+    userEmail: {
+        fontSize: 14,
+        color: '#a0a0a0',
+        marginBottom: 20,
+    },
+    logoutButton: {
+        backgroundColor: '#3a4b67', // Dark secondary button
+        paddingVertical: 8,
+        paddingHorizontal: 30,
+        borderRadius: 8,
+    },
+    logoutButtonText: {
+        color: '#fff',
+        fontWeight: '600',
+        fontSize: 14,
+    },
+
+    // --- Order History List ---
+    historyTitle: {
+        fontSize: 20,
+        color: '#fff',
+        fontWeight: 'bold',
+        marginBottom: 15,
+        marginTop: 10,
+    },
+    orderItem: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#1e2c42',
+        padding: 15,
+        borderRadius: 10,
+        marginBottom: 10,
+        borderLeftWidth: 4,
+        borderLeftColor: '#e8995a', // Accent indicator
+    },
+    orderInfo: {
+        flex: 1,
+    },
+    orderId: {
+        fontSize: 15,
+        color: '#ccc',
+    },
+    orderDate: {
+        fontSize: 12,
+        color: '#a0a0a0',
+    },
+    orderSummary: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+    },
+    orderTotal: {
+        fontSize: 18,
+        color: '#fff',
+        fontWeight: 'bold',
+    },
+
+    // --- Empty State ---
+    emptyState: {
+        alignItems: 'center',
+        marginTop: 50,
+        padding: 20,
+    },
+    emptyText: {
+        fontSize: 16,
+        color: '#ccc',
+        marginBottom: 20,
+    },
+    startShoppingButton: {
+        backgroundColor: '#DC3535',
+        paddingVertical: 12,
+        paddingHorizontal: 40,
+        borderRadius: 8,
+    },
+    startShoppingText: {
+        color: '#fff',
+        fontWeight: 'bold',
+    }
+});
