@@ -20,7 +20,12 @@ const PaymentSuccess = () => {
 
                 <Pressable
                     style={styles.button}
-                    onPress={() => navigation.navigate('Home')}
+                    onPress={() =>
+                        navigation.reset({
+                            index: 0,
+                            routes: [{ name: 'Home' }],
+                        })
+                    }
                 >
                     <Text style={styles.buttonText}>Go to Home</Text>
                 </Pressable>
