@@ -28,9 +28,7 @@ const CustomHeader = ({ navigation }) => (
             />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate("Notifications")}>
-            <Ionicons name="notifications-outline" size={26} color="#fff" />
-        </TouchableOpacity>
+
     </View>
 );
 
