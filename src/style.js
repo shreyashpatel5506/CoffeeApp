@@ -661,3 +661,41 @@ export const CartStyle = StyleSheet.create({
     }
 })
 
+export const FavouriteCardStyle = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#071224ff",
+        padding: 15,
+        borderRadius: 25,
+
+    }, image: {
+        height: 350,
+    }, card: {
+        marginTop: -0,
+        backgroundColor: 'none'
+    }
+})
+
+export const FavouriteStyle = StyleSheet.create({
+    emptyContainer: {
+        flex: 1,
+    },
+    emptyText: {
+        fontSize: 25,
+        color: '#888',
+    },
+    gradient: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    container: {
+        flex: 1,
+
+    },
+    listContent: {
+        flexDirection: 'column',
+        gap: 15
+    }
+
+})
