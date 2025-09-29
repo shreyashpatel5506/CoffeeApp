@@ -10,35 +10,25 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import LinearGradient from "react-native-linear-gradient";
 import { ProductStyles } from "../style";
 import myStore from "../store/store";
+import Coffee from "../assests/Coffee.svg"
+import Bean from "../assests/Bean.svg"
+import Milk from "../assests/milkdrop.svg"
+import Location from "../assests/location.svg"
 
 const ProductDetail = ({ route }) => {
     const { item } = route.params;
     const [selectedSize, setSelectedSize] = useState(item.prices[0]);
-
-    // Get actions and state from store
-    // We only need cartList to show the user how many are already added (optional toast/notification),
-    // but we will primarily use addToCart.
     const {
         FavouriteList,
         addToFavourite,
         removeFromFavourite,
         addToCart,
-        // cartList, // Removed, as we don't need quantity checks for the UI here
-        // incrementQuantity, // Removed, as we don't need quantity controls here
-        // decrementQuantity, // Removed, as we don't need quantity controls here
     } = myStore();
 
     // Re-check for favourite status
     const isFavourite = FavouriteList.some(fav => fav.id === item.id);
 
-    /* *** LOGIC REMOVED ***
-    The following pieces of logic are removed because quantity management 
-    is moved to the CartScreen:
-    - useMemo hook for cartItem
-    - currentQuantity calculation
-    - handleAddToCart helper (it was for conditional increment/add)
-    - handleDecrement helper
-    */
+
 
     return (
         <ScrollView style={ProductStyles.container} showsVerticalScrollIndicator={true}>
@@ -57,7 +47,7 @@ const ProductDetail = ({ route }) => {
                 >
                     <AntDesign
                         name={isFavourite ? "heart" : "hearto"}
-                        color={isFavourite ? "red" : "#fff"}
+                        color={isFavourite ? "#DC3535" : "#fff"}
                         size={26}
                     />
                 </TouchableOpacity>
@@ -65,29 +55,69 @@ const ProductDetail = ({ route }) => {
 
             {/* Top Info Section */}
             <View style={ProductStyles.cardmain} >
-                <Text style={ProductStyles.name}>{item.name}</Text>
-                <Text style={ProductStyles.subText}>{item.special_ingredient}</Text>
-                <Text style={ProductStyles.roast}>{item.roasted}</Text>
+                <View>
+                    <View>
+                        <Text style={ProductStyles.name}>{item.name}</Text>
+                        <Text style={ProductStyles.subText}>{item.special_ingredient}</Text>
+                        <Text style={ProductStyles.roast}>{item.roasted}</Text>
+                    </View>
 
-                {/* Ratings + Type */}
-                <View style={ProductStyles.row}>
-                    <AntDesign name="star" color="#f5a623" size={18} />
-                    <Text style={ProductStyles.rating}>
-                        {item.average_rating} ({item.ratings_count})
-                    </Text>
-                    <Text style={ProductStyles.type}>• {item.type}</Text>
+                    {/* Ratings + Type */}
+                    <View style={ProductStyles.row}>
+                        <AntDesign name="star" color="#f5a623" size={18} />
+                        <Text style={ProductStyles.rating}>
+                            {item.average_rating} ({item.ratings_count})
+                        </Text>
+                        <Text style={ProductStyles.type}>• {item.type}</Text>
+                    </View>
                 </View>
-            </View>
+                <View style={ProductStyles.logos}>
+                    {item.type === 'Coffee' ? (
+                        <>
+                            {/* Coffee Icon */}
+                            < View style={ProductStyles.imagebox}>
+                                <Coffee width={28} height={28} />
+                                <Text style={ProductStyles.iconText}>Coffee</Text>
+                            </View>
+
+                            {/* Milk Icon */}
+                            <View style={ProductStyles.imagebox}>
+                                <Milk width={28} height={28} />
+                                <Text style={ProductStyles.iconText}>Milk</Text>
+                            </View>
+                        </>
+                    ) : (
+                        <>
+                            {/* Bean Icon */}
+                            <View style={ProductStyles.imagebox}>
+                                <Bean width={28} height={28} />
+                                <Text style={ProductStyles.iconText}>Bean</Text>
+                            </View>
+
+                            {/* Location Icon */}
+                            <View style={ProductStyles.imagebox}>
+                                <Location width={28} height={28} />
+                                <Text style={ProductStyles.iconText}>
+                                    {item.ingredients /* e.g. Africa */}
+                                </Text>
+                            </View>
+                        </>
+                    )}
+                </View>
+
+
+            </View >
+
 
             {/* Description */}
-            <View style={ProductStyles.card}>
+            < View style={ProductStyles.card} >
                 <Text style={ProductStyles.sectionTitle}>About</Text>
                 <Text style={ProductStyles.description}>{item.description}</Text>
-            </View>
+            </View >
 
             {/* Size Options */}
-            <View style={ProductStyles.card}>
-                <Text style={ProductStyles.sectionTitle}>Choose Size</Text>
+            < View style={ProductStyles.card} >
+                <Text style={ProductStyles.sectionTitle}>Size</Text>
                 <View style={ProductStyles.sizeRow}>
                     {item.prices.map((p) => (
                         <TouchableOpacity
@@ -109,28 +139,28 @@ const ProductDetail = ({ route }) => {
                         </TouchableOpacity>
                     ))}
                 </View>
-            </View>
+            </View >
 
             {/* Price + Add to Cart Button (Simplified to always show "Add to Cart") */}
-            <View style={ProductStyles.bottomRow}>
+            < View style={ProductStyles.bottomRow} >
                 {/* Price Display */}
-                <View>
+                < View >
                     <Text style={ProductStyles.priceLabel}>Price</Text>
                     <Text style={ProductStyles.price}>
                         {selectedSize.currency} {selectedSize.price}
                     </Text>
-                </View>
+                </View >
 
                 {/* Always show the Add to Cart button */}
-                <TouchableOpacity
+                < TouchableOpacity
                     style={ProductStyles.cartBtn}
                     // Simply call addToCart with the selected item and size
                     onPress={() => addToCart(item, selectedSize.size)}
                 >
                     <Text style={ProductStyles.cartText}>Add to Cart</Text>
-                </TouchableOpacity>
-            </View>
-        </ScrollView>
+                </TouchableOpacity >
+            </View >
+        </ScrollView >
     );
 };
 

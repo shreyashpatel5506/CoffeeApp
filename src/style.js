@@ -52,7 +52,7 @@ export const WelcomeStyle = StyleSheet.create({
 export const ProductStyles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#101724ff",
+        backgroundColor: "#0C0F14",
         padding: 15,
         paddingTop: 35
     },
@@ -80,9 +80,9 @@ export const ProductStyles = StyleSheet.create({
         position: "absolute",
         right: 20,
         top: 20,
-        backgroundColor: "rgba(0,0,0,0.5)",
-        padding: 10,
-        borderRadius: 50,
+        backgroundColor: "#0C0F14",
+        padding: 15,
+        borderRadius: 25,
     },
     card: {
         backgroundColor: "#1419215e",
@@ -97,6 +97,10 @@ export const ProductStyles = StyleSheet.create({
         borderRadius: 15,
         marginBottom: 15,
         marginTop: -154,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        gap: 25
     },
 
     name: {
@@ -127,6 +131,28 @@ export const ProductStyles = StyleSheet.create({
         color: "#bbb",
         marginLeft: 10,
     },
+    logos: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        gap: 15
+    },
+    imagebox: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 5,
+        padding: 15,
+        backgroundColor: '#141921',
+        borderRadius: 25
+    },
+    iconText: {
+        marginTop: 4,
+        fontSize: 12,
+        color: '#fff',
+        textAlign: 'center',
+        fontFamily: "Poppins-Medium",
+    },
     sectionTitle: {
         fontSize: 16,
         fontWeight: "600",
@@ -143,21 +169,24 @@ export const ProductStyles = StyleSheet.create({
         marginTop: 10,
     },
     sizeBtn: {
-        borderWidth: 1,
-        borderColor: "#666",
-        borderRadius: 30, // pill style
+        borderStyle: "solid",
+        borderColor: "#d17842",
+        borderWidth: 2,
+        borderRadius: 30,
         paddingVertical: 8,
+        width: 80,
         paddingHorizontal: 20,
+        textAlign: 'center',
         marginRight: 10,
     },
     sizeBtnActive: {
-        backgroundColor: "#f08c00",
-        borderColor: "#f08c00",
+        backgroundColor: "#D17842",
+        borderColor: "#D17842",
     },
     sizeText: {
         color: "#fff",
         fontSize: 14,
-
+        textAlign: 'center'
     },
     sizeTextActive: {
         color: "#fff",
@@ -182,7 +211,7 @@ export const ProductStyles = StyleSheet.create({
         marginTop: 3,
     },
     cartBtn: {
-        backgroundColor: "#f08c00",
+        backgroundColor: "#D17842",
         paddingVertical: 14,
         paddingHorizontal: 30,
         borderRadius: 30,
@@ -631,3 +660,4 @@ export const CartStyle = StyleSheet.create({
         width: '100%',
     }
 })
+
