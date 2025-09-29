@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TouchableOpacity, ScrollView, TextInput, StyleSheet } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, ScrollView, TextInput, } from 'react-native'
 import React, { useState, useMemo } from 'react'
 import myStore from '../store/store'
 import Card from "../Components/Card.js"
@@ -6,7 +6,6 @@ import { HomeStyles } from '../style.js'
 
 export default function Home() {
     const { CoffeeList, BeansList } = myStore();
-    const [searchQuery, setSearchQuery] = useState("");
 
     // ✅ Categories
     const CategoryList = useMemo(() => {
@@ -31,16 +30,6 @@ export default function Home() {
                 Find the best{"\n"}coffee for you
             </Text>
 
-            {/* 🔸 Search Bar */}
-            <View style={HomeStyles.searchContainer}>
-                <TextInput
-                    style={HomeStyles.searchInput}
-                    placeholder="Find your coffee..."
-                    placeholderTextColor="#555"
-                    value={searchQuery}
-                    onChangeText={setSearchQuery}
-                />
-            </View>
 
             {/* 🔸 Category chips */}
             <FlatList

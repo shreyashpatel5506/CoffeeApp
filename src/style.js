@@ -151,7 +151,7 @@ export const ProductStyles = StyleSheet.create({
         fontSize: 12,
         color: '#fff',
         textAlign: 'center',
-        fontFamily: "Poppins-Medium",
+        fontFamily: "Montserrat",
     },
     sectionTitle: {
         fontSize: 16,
@@ -325,7 +325,7 @@ export const CardStyle = StyleSheet.create({
     ratingText: {
         color: '#fff',
         fontSize: 12,
-        fontFamily: 'Poppins',
+        fontFamily: 'Poppins-Regular',
         fontWeight: '600',
         fontStyle: 'bold'
     },
@@ -417,14 +417,14 @@ export const CartitemStyle = StyleSheet.create({
         width: 99,
         fontSize: 18,
         lineHeight: 20,
-        fontFamily: "Poppins-Regular",
+        fontFamily: "Poppins-Regular-Regular",
         color: '#fff',
     },
     subText: {
         width: 93,
         fontSize: 12,
         lineHeight: 20,
-        fontFamily: "Poppins-Regular",
+        fontFamily: "Poppins-Regular-Regular",
         color: '#AEAEAE'
     },
     parent: {
@@ -443,7 +443,7 @@ export const CartitemStyle = StyleSheet.create({
         fontSize: 10,
         lineHeight: 20,
         fontWeight: "500",
-        fontFamily: "Poppins-Medium",
+        fontFamily: "Montserrat",
         color: "#aeaeae",
         textAlign: "left"
     },
@@ -468,7 +468,7 @@ export const CartitemStyle = StyleSheet.create({
         fontSize: 16,
         lineHeight: 20,
         fontWeight: "500",
-        fontFamily: "Poppins-Medium",
+        fontFamily: "Montserrat",
         color: "#fff",
         textAlign: "left"
     },
@@ -477,7 +477,7 @@ export const CartitemStyle = StyleSheet.create({
         fontSize: 20,
         lineHeight: 20,
         fontWeight: "600",
-        fontFamily: "Poppins-SemiBold",
+        fontFamily: "Poppins-Regular-SemiBold",
         textAlign: "left"
     },
     text2: {
@@ -516,7 +516,7 @@ export const CartitemStyle = StyleSheet.create({
         fontSize: 16,
         lineHeight: 20,
         fontWeight: "600",
-        fontFamily: "Poppins-SemiBold",
+        fontFamily: "Poppins-Regular-SemiBold",
         color: "#fff",
         textAlign: "left"
     },
@@ -614,7 +614,7 @@ export const CartStyle = StyleSheet.create({
         fontSize: 14,
         lineHeight: 22,
         fontWeight: "500",
-        fontFamily: "Poppins-Medium",
+        fontFamily: "Montserrat",
         color: "#aeaeae",
         textAlign: "left"
     },
@@ -623,7 +623,7 @@ export const CartStyle = StyleSheet.create({
         fontSize: 24,
         lineHeight: 24,
         fontWeight: "600",
-        fontFamily: "Poppins-SemiBold",
+        fontFamily: "Poppins-Regular-SemiBold",
         textAlign: "left"
     },
     text2: {
@@ -647,7 +647,7 @@ export const CartStyle = StyleSheet.create({
         fontSize: 20,
 
         fontWeight: "800",
-        fontFamily: "Poppins-SemiBold",
+        fontFamily: "Poppins-Regular-SemiBold",
         color: "#fff",
         textAlign: "center"
     },
