@@ -770,7 +770,7 @@ export const PaymentSuccessStyle = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 2,
         borderColor: '#c75b03ff',
-        width: '100%', // Made full width for prominence
+        width: '100%',
         alignItems: 'center',
     },
     primaryButtonText: {

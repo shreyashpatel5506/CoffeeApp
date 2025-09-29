@@ -3,8 +3,6 @@ import { View, Text, Pressable, ActivityIndicator, StyleSheet, ScrollView } from
 import LinearGradient from 'react-native-linear-gradient';
 import myStore from '../store/store';
 import { useNavigation } from '@react-navigation/native';
-// Note: You may need to install react-native-vector-icons
-import Icon from 'react-native-vector-icons/FontAwesome'; // This handles most free icons (Solid and Brands)
 import Icon6 from 'react-native-vector-icons/FontAwesome6';
 
 import { PaymentStyle } from '../style.js';
