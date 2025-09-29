@@ -15,7 +15,7 @@ function groupCartItems(cartList) {
     return Object.values(groups);
 }
 
-const Cart = () => {
+const Cart = ({ navigation }) => {
     const { cartList, cartPrice } = myStore();
 
     // Group by product id
@@ -58,7 +58,10 @@ const Cart = () => {
                                     <Text style={CartStyle.text4}>{(cartPrice).toFixed(2)}</Text>
                                 </Text>
                             </View>
-                            <Pressable style={CartStyle.checkoutButton}>
+                            <Pressable
+                                style={CartStyle.checkoutButton}
+                                onPress={() => navigation.navigate('Payment')}
+                            >
                                 <Text style={CartStyle.checkoutText}>Checkout</Text>
                             </Pressable>
                         </View>
