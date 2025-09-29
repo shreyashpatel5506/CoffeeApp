@@ -54,8 +54,8 @@ const Cart = () => {
                                 </Text>
                                 <Text style={CartStyle.text}>
                                     <Text style={CartStyle.text2}>$</Text>
-                                    <Text style={CartStyle.text3}>{` `}</Text>
-                                    <Text style={CartStyle.text4}>{cartPrice}</Text>
+
+                                    <Text style={CartStyle.text4}>{(cartPrice).toFixed(2)}</Text>
                                 </Text>
                             </View>
                             <Pressable style={CartStyle.checkoutButton}>

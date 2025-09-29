@@ -619,7 +619,7 @@ export const CartStyle = StyleSheet.create({
         textAlign: "left"
     },
     text: {
-        width: 70,
+        width: 80,
         fontSize: 24,
         lineHeight: 24,
         fontWeight: "600",
