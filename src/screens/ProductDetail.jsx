@@ -1,3 +1,5 @@
+// ProductDetail.jsx
+
 import React, { useState, useMemo } from "react";
 import {
     View,
@@ -14,8 +16,10 @@ import Coffee from "../assests/Coffee.svg"
 import Bean from "../assests/Bean.svg"
 import Milk from "../assests/milkdrop.svg"
 import Location from "../assests/location.svg"
+import { useNavigation } from "@react-navigation/native";
 
 const ProductDetail = ({ route }) => {
+    const navigation = useNavigation();
     const { item } = route.params;
     const [selectedSize, setSelectedSize] = useState(item.prices[0]);
     const {
@@ -27,8 +31,6 @@ const ProductDetail = ({ route }) => {
 
     // Re-check for favourite status
     const isFavourite = FavouriteList.some(fav => fav.id === item.id);
-
-
 
     return (
         <ScrollView style={ProductStyles.container} showsVerticalScrollIndicator={true}>
@@ -141,7 +143,7 @@ const ProductDetail = ({ route }) => {
                 </View>
             </View >
 
-            {/* Price + Add to Cart Button (Simplified to always show "Add to Cart") */}
+            {/* Price + Add to Cart Button */}
             < View style={ProductStyles.bottomRow} >
                 {/* Price Display */}
                 < View >
@@ -151,11 +153,19 @@ const ProductDetail = ({ route }) => {
                     </Text>
                 </View >
 
-                {/* Always show the Add to Cart button */}
+                {/* Add to Cart button */}
                 < TouchableOpacity
                     style={ProductStyles.cartBtn}
-                    // Simply call addToCart with the selected item and size
-                    onPress={() => addToCart(item, selectedSize.size)}
+                    onPress={() => {
+                        addToCart(item, selectedSize.size);
+
+                        navigation.navigate('MenuTabs', {
+                            screen: 'CheckoutStack',
+                            params: {
+                                screen: 'Cart',
+                            },
+                        });
+                    }}
                 >
                     <Text style={ProductStyles.cartText}>Add to Cart</Text>
                 </TouchableOpacity >

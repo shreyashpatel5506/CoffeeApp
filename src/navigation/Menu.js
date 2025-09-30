@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import Home from "../screens/Home.jsx";
+// NOTE: CheckoutStack now includes Cart, Payment, and PaymentSuccess
 import CheckoutStack from "../navigation/CheckoutStack.js";
 import Favourite from "../screens/favourite.jsx";
 import Profile from "../screens/Profile.jsx";
@@ -37,11 +38,11 @@ const Menu = () => (
             tabBarIcon: ({ color, size, focused }) => {
                 let iconName;
                 if (route.name === "Home") iconName = focused ? "home" : "home-outline";
-                else if (route.name === "Checkout")
+                // IMPORTANT: Use the Checkout tab icon logic
+                else if (route.name === "CheckoutStack")
                     iconName = focused ? "cart" : "cart-outline";
                 else if (route.name === "Favourite")
                     iconName = focused ? "heart" : "heart-outline";
-                // 2. ADDED: Icon logic for the new Profile tab
                 else if (route.name === "Profile")
                     iconName = focused ? "person" : "person-outline";
 
@@ -62,10 +63,20 @@ const Menu = () => (
             }
         })}
     >
+
         <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Checkout" component={CheckoutStack} />
+
+
+        <Tab.Screen
+            name="CheckoutStack"
+            component={CheckoutStack}
+            options={{
+                tabBarLabel: 'Cart',
+
+            }}
+        />
+
         <Tab.Screen name="Favourite" component={Favourite} />
-        {/* 3. ADDED: The new Profile Tab */}
         <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
 );

@@ -1,3 +1,5 @@
+// RootStack.js
+
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -8,6 +10,9 @@ import ProductDetail from "../screens/ProductDetail.jsx";
 import Payment from "../screens/Payment.jsx"
 import PaymentSuccess from "../screens/PaymentSuccess.jsx"
 import Profile from "../screens/Profile.jsx"
+import CheckoutStack from "./CheckoutStack.js";
+import Cart from "../screens/cart.jsx"; // Still import Cart, but don't use it directly
+
 const Stack = createStackNavigator();
 
 const RootStack = () => {
